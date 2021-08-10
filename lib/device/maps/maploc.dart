@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:tracking/device/api/auth.dart';
 
 class MapsReceiver extends StatefulWidget {
   final String deviceid;
@@ -37,7 +36,6 @@ class MapsReceiverState extends State<MapsReceiver> {
 
   Map<String, double> currentLocation = new Map();
 
-  StreamSubscription<Map<String, double>> locationSubcription;
   Set<Marker> _markers = {};
 
   Location location = new Location();
@@ -77,7 +75,7 @@ class MapsReceiverState extends State<MapsReceiver> {
           icon: pinLocationIcon1,
           infoWindow: InfoWindow(
             title: "CARRYING :\t" + carry.toUpperCase(),
-            snippet: "VECHICLE NAME :\t" + type.toUpperCase(),
+            snippet: "VECHICLE TYPE :\t" + type.toUpperCase(),
           ),
           position: LatLng(currentLatitude, currentLongitude),
         ));
@@ -92,6 +90,7 @@ class MapsReceiverState extends State<MapsReceiver> {
           position: LatLng(toLatitude, toLongitude),
         ));
       });
+      print(phone);
       try {
         mapController.animateCamera(
           CameraUpdate.newCameraPosition(
@@ -131,6 +130,7 @@ class MapsReceiverState extends State<MapsReceiver> {
 
   @override
   Widget build(BuildContext context) {
+    
     if ((currentLatitude != null) & (currentLongitude != null)) {
       pinPosition = LatLng(currentLatitude, currentLongitude);
       CameraPosition initialLocation =

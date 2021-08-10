@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tracking/device/api/auth.dart';
-import 'package:tracking/device/vechiclelist.dart';
-
+import 'package:tracking/device/vehiclelist.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -30,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _signInButton() {
+    // ignore: deprecated_member_use
     return OutlineButton(
       splashColor: Colors.grey,
       onPressed: () {
